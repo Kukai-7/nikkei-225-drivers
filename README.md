@@ -1,20 +1,38 @@
-# Drivers of the Nikkei 225
+# Who moves the Nikkei? Drivers of Japanese equity returns, 2005 to 2026
 
-Econometrics project, MSc Data & Corporate Finance (Audencia, Paris).
+Group project, *Statistics & Econometrics*, MSc Data & Corporate Finance (Audencia).
 
-**Question:** which macro and market variables explain the monthly moves of the Nikkei 225, and how much?
+**Question:** to what extent do external macro-financial factors (the yen, US equities, oil, the US-Japan rate gap) explain the monthly return of the Nikkei 225, do they still matter once Japan's own Fama-French factors are controlled for, and did the 2026 oil shock change the answer?
 
-## Approach
+## Key results
 
-1. **Data**: monthly series for the index and candidate drivers (FX, rates, global equities, macro indicators), cleaned and aligned on a common calendar
-2. **Model**: OLS regression on monthly returns, estimated in Python (`statsmodels`) and cross-checked in Excel
-3. **Diagnostics**: significance, multicollinearity, residual checks, robustness
-4. **Story**: results turned into a 10 minute presentation for a non-specialist audience
+| | Finding |
+|---|---|
+| **External drivers** | Yen (β 0.87) and S&P 500 (β 0.86) explain **64%** of monthly Nikkei returns. Oil and the rate gap add nothing before 2026 (joint F p = 0.28) |
+| **2026 oil regime** | From March 2026 the oil beta flips from +0.02 to **−0.18** (interaction p < 0.001). Both Chow tests reject stability |
+| **Abnormal returns** | March 2026 is the one month the model badly misses (−12.3 pp, t = −3.6); cumulatively the shock washes out (CAR +3.9%, t = 0.4) |
+| **Japan factor model** | Final model FF5 − CMA + momentum: **adj. R² 0.91**, market β 1.08, large-cap growth tilt, no significant alpha |
+| **Model selection** | Nested F-tests, likelihood-ratio tests, AIC and BIC all pick the same model |
+| **Tails** | Returns are Student-t with about 6 degrees of freedom: the 2008 crash is a 1-in-2,000 month, not 1-in-3-million |
+
+## What's inside
+
+1. Descriptive statistics, normality and unit-root tests
+2. OLS with Newey-West errors, VIF, Breusch-Pagan, Breusch-Godfrey, Durbin-Watson
+3. Structural break: dummy, interaction, abnormal returns, predictive and classic Chow tests
+4. CAPM, FF3, FF5 and Carhart-style models on Kenneth French's Japan factors
+5. Expected excess return from factor premia (about 4.2% a year)
+6. Maximum likelihood: MLE = OLS check, LR tests, AIC/BIC, Student-t fit, simulation of estimator precision
+7. Limitations, stated up front
+
+## Data
+
+Monthly, December 2005 to September 2026. Market series from Yahoo Finance, factors from the Kenneth French Data Library. The notebook expects `dataset.csv` and `dataset_ff_japan.csv` in the same folder.
 
 ## Stack
 
-`Python` `Pandas` `statsmodels` `Excel`
+`Python` `Pandas` `statsmodels` `SciPy` `Matplotlib`
 
-## Status
+## Limitations
 
-🚧 In progress. Notebook, data pipeline and final results will be added as the project moves forward.
+Seven months of oil regime is a small sample, nothing here is causal, and the break date is a modelling choice. See the last section of the notebook.
