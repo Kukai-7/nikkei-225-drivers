@@ -15,6 +15,20 @@ Group project, *Statistics & Econometrics*, MSc Data & Corporate Finance (Audenc
 | **Model selection** | Nested F-tests, likelihood-ratio tests, AIC and BIC all pick the same model |
 | **Tails** | Returns are Student-t with about 6 degrees of freedom: the 2008 crash is a 1-in-2,000 month, not 1-in-3-million |
 
+## Figures
+
+![Nikkei and the yen rebased to 100, actual against fitted monthly returns, and abnormal returns in the 2026 regime](figures/external_drivers.png)
+
+*The yen and US equities track most monthly moves; the 2026 regime shows up as one large miss in March.*
+
+![Fitted against actual excess returns for the final factor model, and adjusted R² across specifications](figures/factor_model.png)
+
+*The final Japan factor model, and why adding factors past it does not help.*
+
+![Normal and Student-t densities fitted to monthly returns, with a Student-t QQ plot](figures/fat_tails.png)
+
+*Monthly returns have fat tails: a Student-t with about 6 degrees of freedom fits where the normal does not.*
+
 ## What's inside
 
 1. Descriptive statistics, normality and unit-root tests
@@ -27,7 +41,7 @@ Group project, *Statistics & Econometrics*, MSc Data & Corporate Finance (Audenc
 
 ## Data
 
-Monthly, December 2005 to September 2026. Market series from Yahoo Finance, factors from the Kenneth French Data Library. The notebook expects `dataset.csv` and `dataset_ff_japan.csv` in the same folder.
+Monthly, December 2005 to September 2026. Market series from Yahoo Finance, factors from the Kenneth French Data Library. The notebook expects `dataset.csv` and `dataset_ff_japan.csv` in the same folder. The two files are not versioned here; the notebook is published with its outputs, so every table and figure can be read without running it.
 
 ## Stack
 
